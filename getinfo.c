@@ -1,75 +1,73 @@
 #include "shell.h"
 
 /**
-* initialize_display_info - Initializes the display_info structure.
-* @myinfo: A pointer to the display_info structure to be initialized.
-*/
-
-void initialize_display_info(display_info *myinfo)
+ * clear_info - initializes info_t struct
+ * @info: struct address
+ */
+void clear_info(info_t *info)
 {
-	myinfo->arg = NULL;
-	myinfo->argv = NULL;
-	myinfo->path = NULL;
-	myinfo->argc = 0;
+	info->arg = NULL;
+	info->argv = NULL;
+	info->path = NULL;
+	info->argc = 0;
 }
 
 /**
- * set_display_info -  Initialize the display_info structure.
- * @myinfo: Pointer to the display_info struct.
- * @av: Argument vector.
+ * set_info - initializes info_t struct
+ * @info: struct address
+ * @av: argument vector
  */
-void set_display_info(display_info *myinfo, char **av)
+void set_info(info_t *info, char **av)
 {
-	int j = 0;
+	int i = 0;
 
-	myinfo->file_name = av[0];
-	if (myinfo->arg)
+	info->fname = av[0];
+	if (info->arg)
 	{
-		myinfo->argv = str_word(myinfo->arg, " \t");
-		if (!myinfo->argv)
+		info->argv = strtow(info->arg, " \t");
+		if (!info->argv)
 		{
-			myinfo->argv = malloc(sizeof(char *) * 2);
-			if (myinfo->argv)
+			info->argv = malloc(sizeof(char *) * 2);
+			if (info->argv)
 			{
-				myinfo->argv[0] = _dup_str(myinfo->arg);
-				myinfo->argv[1] = NULL;
+				info->argv[0] = _strdup(info->arg);
+				info->argv[1] = NULL;
 			}
 		}
-		for (j = 0; myinfo->argv && myinfo->argv[j]; j++)
+		for (i = 0; info->argv && info->argv[i]; i++)
 			;
-		myinfo->argc = j;
+		info->argc = i;
 
-		rep_alias(myinfo);
-		rep_vars(myinfo);
+		replace_alias(info);
+		replace_vars(info);
 	}
 }
 
 /**
- * free_display_info - frees resources held by a display_info struct.
- * @myinfo: A pointer to the display_info struct.
- * @all: A boolean flag (true to free all fields).
+ * free_info - frees info_t struct fields
+ * @info: struct address
+ * @all: true if freeing all fields
  */
-
-void free_display_info(display_info *myinfo, int all)
+void free_info(info_t *info, int all)
 {
-	ffree(myinfo->argv);
-	myinfo->argv = NULL;
-	myinfo->path = NULL;
+	ffree(info->argv);
+	info->argv = NULL;
+	info->path = NULL;
 	if (all)
 	{
-		if (!myinfo->cmd_buf)
-			free(myinfo->arg);
-		if (myinfo->env)
-			free_node(&(myinfo->env));
-		if (myinfo->history)
-			free_node(&(myinfo->history));
-		if (myinfo->alias)
-			free_node(&(myinfo->alias));
-		ffree(myinfo->environ);
-		myinfo->environ = NULL;
-		ptr_free((void **)myinfo->cmd_buf);
-		if (myinfo->readfd > 2)
-			close(myinfo->readfd);
+		if (!info->cmd_buf)
+			free(info->arg);
+		if (info->env)
+			free_list(&(info->env));
+		if (info->history)
+			free_list(&(info->history));
+		if (info->alias)
+			free_list(&(info->alias));
+		ffree(info->environ);
+			info->environ = NULL;
+		bfree((void **)info->cmd_buf);
+		if (info->readfd > 2)
+			close(info->readfd);
 		_putchar(BUF_FLUSH);
 	}
 }
