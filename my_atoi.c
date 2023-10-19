@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * interactive_mode - imteractive mode is return when it is true
- * @myinfo: address of the struct
+ * interactive_mode - interactive mode will be returned if it is true.
+ * @myinfo: struct address
  *
- * Return: 1 when interactive mode is true, 0 when interactive mode is false
+ * Return: 1 will be returned if interactive mode is true, 0 if interactive mode is false
  */
 
 	 int interactive_mode(display_info *myinfo)
@@ -13,9 +13,9 @@
 }
 
 /**
- * is_delim - checks if  there is delimter in the character
- * @a:the character to be check
- * @delimter: the delimeter string
+ * is_delim - checks character if  there is delimter.
+ * @a: check character.
+ * @delimter: delimeter string.
  * Return: 1 if true, 0 if false
  */
 int is_delim(char a, char *delimter)
@@ -27,9 +27,9 @@ int is_delim(char a, char *delimter)
 }
 
 /**
- *isalpha - alphabetic character checker
- *@a: The input character to be check
- *Return: 1 if is alphabetic character, 0 if not alphabetic character.
+ *isalpha - check alphabetic character.
+ *@a: theinput character to be checked.
+ *Return: 1 if it is alphabetic character, 0 if it is not alphabetic character.
  */
 int isalpha(int a)
 {
@@ -40,9 +40,9 @@ int isalpha(int a)
 }
 
 /**
- *my_atoi - a string is converted to an integer
- *@p: the string to be converted to an integer
- *Return: 0 if no numbers in the string, convert the number if otherwise
+ *my_atoi - an integer to be convert to a string.
+ *@p: the string to be converted to an integer.
+ *Return: 0 if there's no numbers in the string, convert the number if otherwise.
  */
 
 int my_atoi(char *p)
