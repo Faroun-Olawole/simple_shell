@@ -7,7 +7,7 @@
 
 int _history(display_info *myinfo)
 {
-	myprint_list(info->history);
+	myprint_list(myinfo->history);
 	return (0);
 }
 
