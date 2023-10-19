@@ -13,23 +13,23 @@
 }
 
 /**
- * is_delim - checks if  there is delimter in the character
+ * is_delim - checks if  there is delimiter in the character
  * @a:the character to be check
- * @delimter: the delimeter string
+ * @delimiter: the delimiter string
  * Return: 1 if true, 0 if false
  */
-int is_delim(char a, char *delimter)
+int is_delim(char a, char *delimiter)
 {
-	while (*delimter)
-		if (*delimter++ == a)
+	while (*delimiter)
+		if (*delimiter++ == a)
 			return (1);
 	return (0);
 }
 
 /**
- *isalpha - alphabetic character checker
+ *isalpha - alphabet character checker
  *@a: The input character to be check
- *Return: 1 if is alphabetic character, 0 if not alphabetic character.
+ *Return: 1 if is alphabet character, 0 if not alphabet character.
  */
 int isalpha(int a)
 {

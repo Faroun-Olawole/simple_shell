@@ -13,7 +13,7 @@ int my_exit(display_info *myinfo)
 
 	if (myinfo->argv[1]) /* If an arguement exit */
 	{
-		exit_check = errors_atoi(info->argv[1]);
+		exit_check = errors_atoi(myinfo->argv[1]);
 		if (exit_check == -1)
 		{
 			myinfo->status = 2;
@@ -22,10 +22,10 @@ int my_exit(display_info *myinfo)
 			_errputchar('\n');
 			return (1);
 		}
-		myinfo->error_num = errors_atoi(info->argv[1]);
+		myinfo->error_num = errors_atoi(myinfo->argv[1]);
 		return (-2);
 	}
-	info->error_num = -1;
+	myinfo->error_num = -1;
 	return (-2);
 }
 
@@ -55,7 +55,7 @@ int my_cd(display_info *myinfo)
 	{
 		if (!_getenv(myinfo, "FORMERPWD="))
 		{
-			_puts(s);
+			_puts(a);
 			_putchar('\n');
 			return (1);
 		}
